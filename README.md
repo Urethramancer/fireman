@@ -12,11 +12,10 @@ operating systems just need a keyword to test for.
 - List all users
 - List complete users (no vital details missing)
 - List incomplete users (currently users without e-mail set)
-- Set e-mail or password for individual users
+- Set full name, e-mail or password for individual users
+- Add/remove individual users
 
 ### TODO
-- Update other user details than e-mail/password
-- Add/remove users
 - Bulk create/edit/delete users from files
 - Automatic passwords for bulk users
 - E-mail the owners of new accounts when bulk creating
@@ -67,15 +66,25 @@ anything to them later.
 
 Set e-mail:
 ```sh
-fireman -u <user> -m <e-mail>
+fireman -u <username> -m <e-mail>
 ```
 
 Set password:
 ```sh
-fireman -u <user> -p <password>
+fireman -u <username> -p <password>
 ```
 
 All user-edit flags can also be combined to set everything at once:
 ```sh
-fireman -u <user> -m <e-mail> -p <password>
+fireman -u <username> -n <full name> -m <e-mail> -p <password>
+```
+
+Add a user (all fields except username are optional):
+```sh
+fireman -a <username> -n <full name> -m <e-mail> -p <password>
+```
+
+Delete a user:
+```sh
+fireman -d <username>
 ```
