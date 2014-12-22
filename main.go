@@ -27,7 +27,7 @@ func main() {
 	cfgname := path.Join(home, CONFIGNAME)
 
 	cfgfile = getopt.StringLong("config", 'C', cfgname, "Name of the configuration file to use.")
-	version := getopt.BoolLong("version", 'v', "Show version and exit.")
+	version := getopt.BoolLong("version", 'v', "Show version and config path, then exit.")
 	allusers := getopt.BoolLong("userlist", 'l', "List all users.")
 	completeusers := getopt.BoolLong("complete", 'c', "List all users with e-mail set.")
 	incompleteusers := getopt.BoolLong("incomplete", 'i', "List all users missing e-mail.")
@@ -38,6 +38,7 @@ func main() {
 
 	if *version {
 		p("%s v%s", PROGNAME, PROGVERSION)
+		p("Default configuration file is %s", cfgname)
 		return
 	}
 
