@@ -139,6 +139,25 @@ anything to them later.</p>
 <p>Delete a user:</p>
 
 <div class="highlight highlight-sh"><pre>fireman -d <span class="pl-k">&lt;</span>username<span class="pl-k">&gt;</span></pre></div>
+
+<h2>
+<a id="bulk-operations" class="anchor" href="#bulk-operations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bulk operations</h2>
+
+<p>To add many users at once from a list, first make a comma-separated file with username, full name and e-mail.
+Example:</p>
+
+<pre><code>one,One,one@example.com
+two,Two,two@example.com
+three,Three,three@example.com
+</code></pre>
+
+<p>Then run the program like this:</p>
+
+<div class="highlight highlight-sh"><pre>fireman -A <span class="pl-k">&lt;</span>filename<span class="pl-k">&gt;</span></pre></div>
+
+<p>To delete users, simple make a list of usernames, one per line. Then run:</p>
+
+<div class="highlight highlight-sh"><pre>fireman -D <span class="pl-k">&lt;</span>filename<span class="pl-k">&gt;</span></pre></div>
       </section>
 
     </div>
