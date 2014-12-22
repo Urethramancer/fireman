@@ -25,11 +25,8 @@ func initConfig() {
 	loadConfig(cfgfile)
 }
 
-func genString(size int, password bool) string {
-	valid := []byte("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_")
-	if password {
-		valid = []byte("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$()@*<>-_.:,;[]{}")
-	}
+func genPassword(size int) string {
+	valid := []byte("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$()-_.:;[]{}")
 	pw := make([]byte, size)
 	for i := 0; i < size; i++ {
 		n, _ := rand.Int(rand.Reader, big.NewInt(int64(len(valid))))

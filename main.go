@@ -28,12 +28,18 @@ func main() {
 
 	cfgfile = getopt.StringLong("config", 'C', cfgname, "Name of the configuration file to use.")
 	version := getopt.BoolLong("version", 'v', "Show version and config path, then exit.")
+
 	allusers := getopt.BoolLong("userlist", 'l', "List all users.")
 	completeusers := getopt.BoolLong("complete", 'c', "List all users with e-mail set.")
 	incompleteusers := getopt.BoolLong("incomplete", 'i', "List all users missing e-mail.")
-	user := getopt.StringLong("user", 'u', "", "User to edit.")
-	mail := getopt.StringLong("email", 'm', "", "E-mail address of specified user.")
-	pw := getopt.StringLong("password", 'p', "", "Password of specified user.")
+
+	add := getopt.StringLong("adduser", 'a', "", "Name of user to add.")
+	edit := getopt.StringLong("edituser", 'e', "", "User to edit.")
+	del := getopt.StringLong("deluser", 'd', "", "Name of user to delete.")
+	mail := getopt.StringLong("email", 'm', "", "E-mail address of the specified user.")
+	pw := getopt.StringLong("password", 'p', "", "Password of the specified user.")
+	name := getopt.StringLong("name", 'n', "", "Full name of the specified user.")
+
 	initConfig()
 
 	if *version {
@@ -43,33 +49,37 @@ func main() {
 	}
 
 	if *allusers {
-		getUsersOF(0)
+		getUsers(0)
 		return
 	}
 	if *completeusers {
-		getUsersOF(1)
+		getUsers(1)
 		return
 	}
 	if *incompleteusers {
-		getUsersOF(2)
+		getUsers(2)
 		return
 	}
-	if *user != "" {
-		if *mail == "" && *pw == "" {
-			p("Do what with %s?", *user)
+
+	if *add != "" {
+		if *pw == "" {
+			*pw = genPassword(16)
+		}
+		createUser(*add, *name, *mail, *pw)
+		return
+	}
+
+	if *del != "" {
+		deleteUser(*del)
+		return
+	}
+
+	if *edit != "" {
+		if *name == "" || *mail == "" && *pw == "" {
+			p("Do what with %s?", *edit)
 			return
 		}
-		if *mail != "" && *pw != "" {
-			setDetailsOF(*user, *mail, *pw)
-			return
-		}
-		if *mail != "" {
-			setDetailsOF(*user, *mail, "")
-			return
-		}
-		if *pw != "" {
-			setDetailsOF(*user, "", *pw)
-		}
+		setDetails(*edit, *name, *mail, *pw)
 		return
 	}
 	getopt.Usage()
