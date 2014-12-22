@@ -9,7 +9,7 @@ import (
 )
 
 const PROGNAME string = "Fireman"
-const PROGVERSION string = "0.1.0"
+const PROGVERSION string = "0.2.0"
 
 func main() {
 	u, err := user.Current()
