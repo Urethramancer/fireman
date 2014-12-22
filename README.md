@@ -14,10 +14,9 @@ operating systems just need a keyword to test for.
 - List incomplete users (currently users without e-mail set)
 - Set full name, e-mail or password for individual users
 - Add/remove individual users
+- Add/remove users in bulk, with password generation
 
 ### TODO
-- Bulk create/edit/delete users from files
-- Automatic passwords for bulk users
 - E-mail the owners of new accounts when bulk creating
 
 ## Building
