@@ -7,6 +7,7 @@ Any Unix-like system which Go runs on is going to run well. The only ones recogn
 Windows is most likely going to work if somebody writes the setup code (initialising paths for config, mainly), and other
 operating systems just need a keyword to test for.
 
+
 ## Features
 - List all users
 - List complete users (no vital details missing)
@@ -19,6 +20,13 @@ operating systems just need a keyword to test for.
 - Bulk create/edit/delete users from files
 - Automatic passwords for bulk users
 - E-mail the owners of new accounts when bulk creating
+
+## Building
+Packages required:
+- code.google.com/p/gcfg
+- code.google.com/p/getopt
+
+Currently developed with Go 1.4, so don't bet on it staying compatible with older versions.
 
 ## Configuration
 The config file is a simple INI-style file with one section, containing two entries. If it's missing it will be created on first run.
