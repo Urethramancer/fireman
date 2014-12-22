@@ -58,15 +58,14 @@ operating systems just need a keyword to test for.</p>
 <li>List all users</li>
 <li>List complete users (no vital details missing)</li>
 <li>List incomplete users (currently users without e-mail set)</li>
-<li>Set e-mail or password for individual users</li>
+<li>Set full name, e-mail or password for individual users</li>
+<li>Add/remove individual users</li>
 </ul>
 
 <h3>
 <a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h3>
 
 <ul>
-<li>Update other user details than e-mail/password</li>
-<li>Add/remove users</li>
 <li>Bulk create/edit/delete users from files</li>
 <li>Automatic passwords for bulk users</li>
 <li>E-mail the owners of new accounts when bulk creating</li>
@@ -123,15 +122,23 @@ anything to them later.</p>
 
 <p>Set e-mail:</p>
 
-<div class="highlight highlight-sh"><pre>fireman -u <span class="pl-k">&lt;</span>user<span class="pl-k">&gt;</span> -m <span class="pl-k">&lt;</span>e-mail<span class="pl-k">&gt;</span></pre></div>
+<div class="highlight highlight-sh"><pre>fireman -u <span class="pl-k">&lt;</span>username<span class="pl-k">&gt;</span> -m <span class="pl-k">&lt;</span>e-mail<span class="pl-k">&gt;</span></pre></div>
 
 <p>Set password:</p>
 
-<div class="highlight highlight-sh"><pre>fireman -u <span class="pl-k">&lt;</span>user<span class="pl-k">&gt;</span> -p <span class="pl-k">&lt;</span>password<span class="pl-k">&gt;</span></pre></div>
+<div class="highlight highlight-sh"><pre>fireman -u <span class="pl-k">&lt;</span>username<span class="pl-k">&gt;</span> -p <span class="pl-k">&lt;</span>password<span class="pl-k">&gt;</span></pre></div>
 
 <p>All user-edit flags can also be combined to set everything at once:</p>
 
-<div class="highlight highlight-sh"><pre>fireman -u <span class="pl-k">&lt;</span>user<span class="pl-k">&gt;</span> -m <span class="pl-k">&lt;</span>e-mail<span class="pl-k">&gt;</span> -p <span class="pl-k">&lt;</span>password<span class="pl-k">&gt;</span></pre></div>
+<div class="highlight highlight-sh"><pre>fireman -u <span class="pl-k">&lt;</span>username<span class="pl-k">&gt;</span> -n <span class="pl-k">&lt;</span>full name<span class="pl-k">&gt;</span> -m <span class="pl-k">&lt;</span>e-mail<span class="pl-k">&gt;</span> -p <span class="pl-k">&lt;</span>password<span class="pl-k">&gt;</span></pre></div>
+
+<p>Add a user (all fields except username are optional):</p>
+
+<div class="highlight highlight-sh"><pre>fireman -a <span class="pl-k">&lt;</span>username<span class="pl-k">&gt;</span> -n <span class="pl-k">&lt;</span>full name<span class="pl-k">&gt;</span> -m <span class="pl-k">&lt;</span>e-mail<span class="pl-k">&gt;</span> -p <span class="pl-k">&lt;</span>password<span class="pl-k">&gt;</span></pre></div>
+
+<p>Delete a user:</p>
+
+<div class="highlight highlight-sh"><pre>fireman -d <span class="pl-k">&lt;</span>username<span class="pl-k">&gt;</span></pre></div>
       </section>
 
     </div>
