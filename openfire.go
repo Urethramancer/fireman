@@ -43,7 +43,7 @@ func buildUserXML(buf *bytes.Buffer, username string, name string, email string,
 	buf.WriteString("</user>\n")
 }
 
-func createUser(username string, name string, email string, pw string) {
+func createUser(username string, name string, email string, pw string, silent bool) {
 	var buf bytes.Buffer
 	buf.WriteString("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n")
 	buildUserXML(&buf, username, name, email, pw)
@@ -61,7 +61,9 @@ func createUser(username string, name string, email string, pw string) {
 	defer res.Body.Close()
 
 	if res.StatusCode == 201 {
-		p("Successfully created user %s with password %s", username, pw)
+		if !silent {
+			p("Successfully created user %s with password %s", username, pw)
+		}
 	} else {
 		p("Error: %s", res.Status)
 	}

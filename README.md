@@ -88,3 +88,22 @@ Delete a user:
 ```sh
 fireman -d <username>
 ```
+
+## Bulk operations
+To add many users at once from a list, first make a comma-separated file with username, full name and e-mail.
+Example:
+```
+one,One,one@example.com
+two,Two,two@example.com
+three,Three,three@example.com
+```
+
+Then run the program like this:
+```sh
+fireman -A <filename>
+```
+
+To delete users, simple make a list of usernames, one per line. Then run:
+```sh
+fireman -D <filename>
+```

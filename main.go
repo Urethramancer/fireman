@@ -1,15 +1,18 @@
 package main
 
 import (
+	"bytes"
+	"io/ioutil"
 	"os/user"
 	"path"
 	"runtime"
+	"strings"
 
 	"code.google.com/p/getopt"
 )
 
 const PROGNAME string = "Fireman"
-const PROGVERSION string = "0.2.0"
+const PROGVERSION string = "0.3.0"
 
 func main() {
 	u, err := user.Current()
@@ -34,8 +37,10 @@ func main() {
 	incompleteusers := getopt.BoolLong("incomplete", 'i', "List all users missing e-mail.")
 
 	add := getopt.StringLong("adduser", 'a', "", "Name of user to add.")
+	addusers := getopt.StringLong("addusers", 'A', "", "Name of file containing users to add.")
 	edit := getopt.StringLong("edituser", 'e', "", "User to edit.")
 	del := getopt.StringLong("deluser", 'd', "", "Name of user to delete.")
+	delusers := getopt.StringLong("delusers", 'D', "", "Name of file containing users to delete.")
 	mail := getopt.StringLong("email", 'm', "", "E-mail address of the specified user.")
 	pw := getopt.StringLong("password", 'p', "", "Password of the specified user.")
 	name := getopt.StringLong("name", 'n', "", "Full name of the specified user.")
@@ -65,12 +70,48 @@ func main() {
 		if *pw == "" {
 			*pw = genPassword(16)
 		}
-		createUser(*add, *name, *mail, *pw)
+		createUser(*add, *name, *mail, *pw, false)
+		return
+	}
+
+	if *addusers != "" {
+		data, err := ioutil.ReadFile(*addusers)
+		if err != nil {
+			f("Error reading file %s: %s", *addusers, err.Error())
+		}
+		lines := bytes.Split(data, []byte("\n"))
+		for i, e := range lines {
+			line := string(e)
+			if line != "" {
+				l := strings.Split(line, ",")
+				if len(l) != 3 {
+					f("Error with data on line %d: Need username, full name and e-mail.", i+1)
+				}
+				pw := genPassword(16)
+				createUser(l[0], l[1], l[2], pw, true)
+				p("%s,%s", l[0], pw)
+			}
+		}
 		return
 	}
 
 	if *del != "" {
 		deleteUser(*del)
+		return
+	}
+
+	if *delusers != "" {
+		data, err := ioutil.ReadFile(*delusers)
+		if err != nil {
+			f("Error reading file %s: %s", *addusers, err.Error())
+		}
+		lines := bytes.Split(data, []byte("\n"))
+		for _, e := range lines {
+			u := string(e)
+			if u != "" {
+				deleteUser(u)
+			}
+		}
 		return
 	}
 
