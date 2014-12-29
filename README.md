@@ -1,4 +1,4 @@
-# Fireman
+# Fireman [![Build Status](https://travis-ci.org/Urethramancer/fireman.svg?branch=master)](https://travis-ci.org/Urethramancer/fireman)
 This is a simple little Go tool I made to manage users on my Openfire server. It's derived from a server tool I made to reset passwords,
 but will do a bit more when finished.
 
