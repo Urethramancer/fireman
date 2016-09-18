@@ -8,11 +8,11 @@ import (
 	"runtime"
 	"strings"
 
-	"code.google.com/p/getopt"
+	"github.com/pborman/getopt"
 )
 
 const PROGNAME string = "Fireman"
-const PROGVERSION string = "0.3.0"
+const PROGVERSION string = "0.3.1"
 
 func main() {
 	u, err := user.Current()
