@@ -1,4 +1,9 @@
 language: go
 
 go:
+  - 1.7
   - tip
+
+install:
+  - go get github.com/pborman/getopt
+  - go get gopkg.in/gcfg.v1
