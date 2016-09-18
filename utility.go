@@ -7,7 +7,7 @@ import (
 	"math/big"
 	"os"
 
-	"code.google.com/p/getopt"
+	"github.com/pborman/getopt"
 )
 
 // For command-line tools
